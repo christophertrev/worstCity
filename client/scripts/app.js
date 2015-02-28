@@ -7,23 +7,41 @@ var app = angular.module("worstCity", ["firebase"]);
 
 app.controller("SampleCtrl", ["$scope", "$firebase",
   function($scope, $firebase) {
-  var ref = new Firebase("https://publicdata-transit.firebaseio.com/sf-muni");
-  // var ref = new Firebase("  https://publicdata-parking.firebaseio.com/");
-  // var ref = new Firebase("https://vivid-fire-4083.firebaseio.com/");
-  // var 
 
-  // create an AngularFire reference to the data
-  // console.log(ref)
-  var sync = $firebase(ref);
-  // var sync = $firebase(ref.child('routes').child('N'));
-  // console.log(sync.$asObject())
-  sync.$asObject().$bindTo($scope, "data");
-  // download the data into a local object
-  // $scope.transitData = sync.$asObject();
+  var refTransit = new Firebase("https://publicdata-transit.firebaseio.com/sf-muni");
+  var sync = $firebase(refTransit);
+  sync.$asObject().$bindTo($scope, "transitData");
 
-  // $scope.data.child('routes');
-  // console.log($scope.data)
-  // console.log(Object.keys($scope.data))
+  var refParking = new Firebase("https://publicdata-parking.firebaseio.com/");
+  var sync = $firebase(refParking);
+  // sync.$asObject().$bindTo($scope, "parkingData");
+  
+  var refWeather = new Firebase("https://publicdata-weather.firebaseio.com/")
+  var sync = $firebase(refWeather);
+  // sync.$asObject().$bindTo($scope, "weatherData");
+  
+  var refAirport = new Firebase("https://publicdata-airports.firebaseio.com/");
+  var sync = $firebase(refAirport);
+  var airportData = sync.$asObject();
+  sync.$asObject().$bindTo($scope, "airportData");
+
+
+  console.log(airportData)
+
+  // function getCities(){
+  //   var cities = {};
+  //   // airportData.forEach(function(item){
+  //   //   console.log(item)
+  //   // })
+  //   // console.log(airportData)
+  //   // for ( var item in airportData){
+  //   //   console.log(item)
+  //   // }
+  // }
+  
+  // getCities();
+
+
 
 }
 ]);

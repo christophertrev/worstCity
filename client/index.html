@@ -15,10 +15,23 @@
         <div class="weather">
           places of things and stuff
           <ul>
+            <li ng-repeat="airport in airportData">
+              {{airport.city}}
+              {{airport.delay}}
+            </li>
             <!-- <li ng -->
           </ul>
         </div>
-        {{ data.routes.N }}
+        <div class="transit">
+          places of things and stuff
+          <ul>
+            <li ng-repeat="stuff in transitData">
+              {{stuff}}
+            </li>
+            <!-- <li ng -->
+          </ul>
+        </div>
+       
       </div>
     </div>
     it worked probably
